@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  .max-w-lg.mx-auto
+    a(href="/books").text-indigo-500.text-sm.hover:underline.mb-4.inline-block ← Retour à la liste
+
+    .bg-white.rounded-2xl.shadow-md.p-8
+      .flex.items-start.justify-between.mb-4
+        span.bg-indigo-100.text-indigo-700.text-xs.font-medium.px-3.py-1.rounded-full= book.genre || "Général"
+        span.text-gray-400.text-sm= book.year || ""
+
+      h1.text-3xl.font-bold.text-gray-800.mb-2= book.title
+      p.text-gray-500.text-lg.mb-6 par #{book.author}
+
+      .border-t.border-gray-100.pt-5.flex.justify-between.items-center
+        p.text-gray-400.text-sm ID livre : ##{book.id}
+        form(method="POST" action=`/books/${book.id}/delete` onsubmit="return confirm('Supprimer ce livre ?')")
+          button.bg-red-50.text-red-500.hover:bg-red-100.border.border-red-200.px-4.py-2.rounded-lg.text-sm.transition(type="submit")
+            | 🗑 Supprimer
