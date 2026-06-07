@@ -1,0 +1,30 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title= title + " | TP2 Express"
+    script(src="https://cdn.tailwindcss.com")
+    style.
+      body { font-family: 'Inter', system-ui, sans-serif; }
+  body.bg-gray-50.min-h-screen
+    //- Navbar
+    nav.bg-indigo-700.shadow-lg
+      .max-w-5xl.mx-auto.px-4.py-3.flex.items-center.justify-between
+        a(href="/books").text-white.font-bold.text-xl.tracking-tight 📚 Bibliothèque
+        .flex.items-center.gap-4
+          if user
+            span.text-indigo-200.text-sm Bonjour, 
+              strong.text-white= user.username
+            a(href="/auth/logout").bg-white.text-indigo-700.px-3.py-1.rounded-full.text-sm.font-medium.hover:bg-indigo-100.transition Se déconnecter
+          else
+            a(href="/auth/login").text-indigo-200.hover:text-white.text-sm.transition Connexion
+            a(href="/auth/register").bg-white.text-indigo-700.px-3.py-1.rounded-full.text-sm.font-medium.hover:bg-indigo-100.transition Inscription
+
+    //- Main content
+    main.max-w-5xl.mx-auto.px-4.py-8
+      block content
+
+    //- Footer
+    footer.text-center.text-gray-400.text-xs.py-6.mt-8
+      p TP2 Express.js — Pug · Passport · MongoDB · Tailwind
